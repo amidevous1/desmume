@@ -5,7 +5,7 @@ Maintainer: Debian Games Team <pkg-games-devel@lists.alioth.debian.org>
 Uploaders:
  Evgeni Golov <evgeni@debian.org>
 Build-Depends:
- debhelper-compat (= 11),
+ debhelper-compat (= 13),
  meson,
  cmake,
  libglib2.0-dev,
