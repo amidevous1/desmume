@@ -1,0 +1,24 @@
+--- a/desmume/src/libretro-common/features/features_cpu.c
++++ b/desmume/src/libretro-common/features/features_cpu.c
+@@ -310,7 +310,7 @@
+ }
+ #endif
+ 
+-#if defined(__linux__) && !defined(CPU_X86)
++#if defined(__linux__) && !defined(CPU_X86) && defined(__arm__) || defined(__aarch64__)
+ #if __ARM_ARCH
+ #include <sys/auxv.h>
+ #endif
+@@ -355,6 +355,12 @@
+    return status;
+ #endif
+ }
++#else
++static unsigned char check_arm_cpu_feature(const char* feature)
++{
++   // Return 0 or perform no operation on non-ARM architectures.
++   return 0;
++}
+ 
+ #if !defined(_SC_NPROCESSORS_ONLN)
+ /* Parse an decimal integer starting from 'input', but not going further

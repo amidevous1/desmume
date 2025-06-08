@@ -1,0 +1,4 @@
+01_use_system_tinyxml.patch
+add-keywords-to-desktop-files.patch
+arm64.patch
+fix_undeclared_on_riscv.patch
