@@ -1,0 +1,16 @@
+From: Evgeni Golov <evgeni@debian.org>
+Date: Sun, 23 Mar 2014 12:03:04 +0100
+Subject: add keywords to desktop files
+
+see
+ http://standards.freedesktop.org/desktop-entry-spec/latest/ar01s05.html
+ https://wiki.gnome.org/Initiatives/GnomeGoals/DesktopFileKeywords
+for details
+
+--- a/desmume/src/frontend/posix/gtk/org.desmume.DeSmuME.desktop
++++ b/desmume/src/frontend/posix/gtk/org.desmume.DeSmuME.desktop
+@@ -8,3 +8,4 @@
+ Icon=org.desmume.DeSmuME
+ Categories=GNOME;GTK;Game;Emulator;
+ MimeType=application/x-nintendo-ds-rom;
++Keywords=nintendo;ds;emulator
