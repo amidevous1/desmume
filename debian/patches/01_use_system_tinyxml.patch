@@ -1,1 +1,82 @@
+From: Evgeni Golov <evgeni@debian.org>
+From: Patrice Duroux <patrice.duroux@gmail.com>
+Subject: use the system tinyxml instead of the embedded copy
+Last-Update: 2024-09-28
 
+diff --git a/desmume/src/frontend/interface/meson.build b/desmume/src/frontend/interface/meson.build
+index 1a6328a..e28334b 100644
+--- a/desmume/src/frontend/interface/meson.build
++++ b/desmume/src/frontend/interface/meson.build
+@@ -19,6 +19,7 @@ dep_gl = dependency('gl', required: false)
+ dep_openal = dependency('openal', required: get_option('openal'))
+ dep_alsa = dependency('alsa', required: false)
+ dep_soundtouch = dependency('soundtouch', required: false)
++dep_tinyxml = dependency('tinyxml')
+ 
+ if get_option('wifi')
+   add_global_arguments('-DEXPERIMENTAL_WIFI_COMM', language: ['c', 'cpp'])
+@@ -26,7 +27,7 @@ endif
+ 
+ add_global_arguments('-DTARGET_INTERFACE', language: ['c', 'cpp'])
+ 
+-dependencies = [dep_glib2, dep_sdl, dep_pcap, dep_zlib, dep_threads]
++dependencies = [dep_glib2, dep_sdl, dep_pcap, dep_zlib, dep_threads, dep_tinyxml]
+ 
+ if target_machine.cpu() == 'x86_64'
+   add_global_arguments('-DHAVE_JIT', language: ['c', 'cpp'])
+@@ -104,10 +105,6 @@ libdesmume_src += [
+   '../../utils/libfat/libfat_public_api.cpp',
+   '../../utils/libfat/lock.cpp',
+   '../../utils/libfat/partition.cpp',
+-  '../../utils/tinyxml/tinystr.cpp',
+-  '../../utils/tinyxml/tinyxml.cpp',
+-  '../../utils/tinyxml/tinyxmlerror.cpp',
+-  '../../utils/tinyxml/tinyxmlparser.cpp',
+   '../../utils/colorspacehandler/colorspacehandler.cpp',
+   '../../addons/slot2_auto.cpp', '../../addons/slot2_mpcf.cpp', '../../addons/slot2_paddle.cpp', '../../addons/slot2_gbagame.cpp', '../../addons/slot2_none.cpp', '../../addons/slot2_rumblepak.cpp', '../../addons/slot2_guitarGrip.cpp', '../../addons/slot2_expMemory.cpp', '../../addons/slot2_piano.cpp', '../../addons/slot2_passme.cpp', '../../addons/slot1_none.cpp', '../../addons/slot1_r4.cpp', '../../addons/slot1_retail_nand.cpp', '../../addons/slot1_retail_auto.cpp', '../../addons/slot1_retail_mcrom.cpp', '../../addons/slot1_retail_mcrom_debug.cpp', '../../addons/slot1comp_mc.cpp', '../../addons/slot1comp_rom.cpp', '../../addons/slot1comp_protocol.cpp',
+   '../../cheatSystem.cpp',
+diff --git a/desmume/src/frontend/posix/meson.build b/desmume/src/frontend/posix/meson.build
+index 901c4de..c4f2d0b 100644
+--- a/desmume/src/frontend/posix/meson.build
++++ b/desmume/src/frontend/posix/meson.build
+@@ -20,6 +20,7 @@ dep_openal = dependency('openal', required: get_option('openal'))
+ dep_alsa = dependency('alsa', required: false)
+ dep_soundtouch = dependency('soundtouch', required: false)
+ dep_agg = dependency('libagg', required: false)
++dep_tinyxml = dependency('tinyxml')
+ 
+ # XXX: something wrong with this one.
+ #dep_lua = dependency('lua-5.1', required: false)
+@@ -28,7 +29,7 @@ if get_option('wifi')
+   add_global_arguments('-DEXPERIMENTAL_WIFI_COMM', language: ['c', 'cpp'])
+ endif
+ 
+-dependencies = [dep_glib2, dep_sdl, dep_pcap, dep_zlib, dep_threads]
++dependencies = [dep_glib2, dep_sdl, dep_pcap, dep_zlib, dep_threads, dep_tinyxml]
+ 
+ if target_machine.cpu() == 'x86_64'
+   add_global_arguments('-DHAVE_JIT', language: ['c', 'cpp'])
+@@ -99,10 +100,6 @@ libdesmume_src = [
+   '../../utils/libfat/libfat_public_api.cpp',
+   '../../utils/libfat/lock.cpp',
+   '../../utils/libfat/partition.cpp',
+-  '../../utils/tinyxml/tinystr.cpp',
+-  '../../utils/tinyxml/tinyxml.cpp',
+-  '../../utils/tinyxml/tinyxmlerror.cpp',
+-  '../../utils/tinyxml/tinyxmlparser.cpp',
+   '../../utils/colorspacehandler/colorspacehandler.cpp',
+   '../../addons/slot2_auto.cpp', '../../addons/slot2_mpcf.cpp', '../../addons/slot2_paddle.cpp', '../../addons/slot2_gbagame.cpp', '../../addons/slot2_none.cpp', '../../addons/slot2_rumblepak.cpp', '../../addons/slot2_guitarGrip.cpp', '../../addons/slot2_expMemory.cpp', '../../addons/slot2_piano.cpp', '../../addons/slot2_passme.cpp', '../../addons/slot1_none.cpp', '../../addons/slot1_r4.cpp', '../../addons/slot1_retail_nand.cpp', '../../addons/slot1_retail_auto.cpp', '../../addons/slot1_retail_mcrom.cpp', '../../addons/slot1_retail_mcrom_debug.cpp', '../../addons/slot1comp_mc.cpp', '../../addons/slot1comp_rom.cpp', '../../addons/slot1comp_protocol.cpp',
+   '../../cheatSystem.cpp',
+diff --git a/desmume/src/utils/advanscene.cpp b/desmume/src/utils/advanscene.cpp
+index f496560..6534ab8 100644
+--- a/desmume/src/utils/advanscene.cpp
++++ b/desmume/src/utils/advanscene.cpp
+@@ -19,7 +19,7 @@
+ #include <time.h>
+ 
+ #define TIXML_USE_STL
+-#include "tinyxml/tinyxml.h"
++#include <tinyxml.h>
+ 
+ #include "advanscene.h"
+ #include "../common.h"
