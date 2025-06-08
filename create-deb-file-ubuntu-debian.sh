@@ -20,5 +20,5 @@ wget https://github.com/TASEmulators/desmume/archive/refs/tags/release_0_9_13.ta
 tar -xvf desmume_0.9.13.orig.tar.gz
 cd desmume-release_0_9_13
 git clone -b ubuntu-debian https://github.com/amidevous1/desmume.git debian
-rm -rf .git
+rm -rf .git debian/.git
 debuild
