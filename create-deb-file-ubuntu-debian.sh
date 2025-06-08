@@ -17,5 +17,8 @@ tar -xvf desmume_0.9.13.orig.tar.gz
 wget https://github.com/amidevous1/desmume/archive/refs/heads/ubuntu-debian.tar.gz -O desmume_0.9.13-4.debian.tar.gz
 tar -xvf desmume_0.9.13-4.debian.tar.gz
 rm -f desmume_0.9.13-4.debian.tar.gz
-cd release_0_9_13
-debbuild
+mkdir desmume-release_0_9_13/debian
+cp -R desmume-ubuntu-debian/debian/* desmume-release_0_9_13/debian/
+rm -rf desmume-ubuntu-debian
+cd desmume-release_0_9_13
+debuild
