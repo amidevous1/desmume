@@ -19,7 +19,8 @@ rm -f desmume*
 #wget https://github.com/TASEmulators/desmume/archive/refs/tags/release_0_9_13.tar.gz -O desmume_0.9.13.orig.tar.gz
 wget https://archive.ubuntu.com/ubuntu/pool/universe/d/desmume/desmume_0.9.13.orig.tar.gz -O desmume_0.9.13.orig.tar.gz
 tar -xvf desmume_0.9.13.orig.tar.gz
-wget https://github.com/amidevous1/desmume/archive/refs/heads/ubuntu-debian.tar.gz -O desmume_0.9.13-4.debian.tar.gz
+#wget https://github.com/amidevous1/desmume/archive/refs/heads/ubuntu-debian.tar.gz -O desmume_0.9.13-4.debian.tar.gz
+wget https://archive.ubuntu.com/ubuntu/pool/universe/d/desmume/desmume_0.9.13-4.debian.tar.xz -O desmume_0.9.13-4.debian.tar.gz
 tar -xvf desmume_0.9.13-4.debian.tar.gz
 rm -f desmume_0.9.13-4.debian.tar.gz
 mkdir desmume-release_0_9_13/debian
