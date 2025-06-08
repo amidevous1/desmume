@@ -1,0 +1,38 @@
+Source: desmume
+Section: games
+Priority: optional
+Maintainer: Debian Games Team <pkg-games-devel@lists.alioth.debian.org>
+Uploaders:
+ Evgeni Golov <evgeni@debian.org>
+Build-Depends:
+ debhelper-compat (= 13),
+ meson,
+ cmake,
+ libglib2.0-dev,
+ libsdl2-dev,
+ libpcap-dev,
+# libgtk-3-dev,
+ libopenal-dev,
+ libsoundtouch-dev,
+ libtinyxml-dev
+Rules-Requires-Root: no
+Standards-Version: 4.7.0
+Homepage: https://desmume.org/
+Vcs-Git: https://salsa.debian.org/games-team/desmume.git
+Vcs-Browser: https://salsa.debian.org/games-team/desmume
+
+Package: desmume
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Nintendo DS emulator
+ DeSmuME is a Nintendo DS emulator running homebrew demos and commercial games.
+ .
+ This package includes only the command line user interface desmume-cli.
+
+#Package: desmume-gtk3
+#Architecture: any
+#Depends: ${shlibs:Depends}, ${misc:Depends}
+#Description: Nintendo DS emulator - GTK3 frontend
+# DeSmuME is a Nintendo DS emulator running homebrew demos and commercial games.
+# .
+# This package includes the graphical interface.
