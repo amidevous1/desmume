@@ -11,7 +11,11 @@ sudo apt-get -y install libpcap-dev
 sudo apt-get -y install libopenal-dev
 sudo apt-get -y install libsoundtouch-dev
 sudo apt-get -y install libtinyxml-dev
-wget https://github.com/TASEmulators/desmume/archive/refs/tags/release_0_9_11.tar.gz
-tar -xvf release_0_9_11.tar.gz
-cd release_0_9_11/desmume
-mv src desmume-0_9_11
+rm -f desmume*
+wget https://github.com/TASEmulators/desmume/archive/refs/tags/release_0_9_13.tar.gz -O desmume_0.9.13.orig.tar.gz
+tar -xvf desmume_0.9.13.orig.tar.gz
+wget https://github.com/amidevous1/desmume/archive/refs/heads/ubuntu-debian.tar.gz -O desmume_0.9.13-4.debian.tar.gz
+tar -xvf desmume_0.9.13-4.debian.tar.gz
+rm -f desmume_0.9.13-4.debian.tar.gz
+cd release_0_9_13
+debbuild
